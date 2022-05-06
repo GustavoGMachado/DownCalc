@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oleo+Script:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="assets/style/style.css">
+    <title>CalcDown</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="headerArea">
+                <div id="leftHeaderArea">
+                    <a href="" id="AreaHLText">
+                        DownCalc
+                    </a>
+                </div>
+                <div id="rightHeaderArea">
+                    aaaaaa
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="container">
+            <div id="calcArea">
+                <form action="" id="calcForm">
+                    <div class="inputArea">
+                        <label for="fileSize">Tamanho do arquivo</label> <br>
+                        <input type="text" id="fileSize">
+                        <select name="" id="select1">
+                            <option value="">Kilobyte (kB)</option>
+                            <option value="">Megabyte (MB)</option>
+                            <option value="">Gigabyte (GB)</option>
+                        </select> 
+                    </div>
+                    <div class="inputArea">
+                        <label for="connectionSpeed">Velocidade de conexão</label> <br>
+                        <input type="text" id="connectionSpeed">
+                        <select name="" id="select2">
+                            <option value="">Kb/s</option>
+                            <option value="">KB/s</option>
+                            <option value="">Mb/s</option>
+                        </select> 
+                    </div>
+                    <div class="inputArea">
+                        <label for="downTime">Tempo para Download</label> <br>
+                        <input type="text" id="downTime">
+                        <select name="" id="select3">
+                            <option value="Seconds">Segundos</option>
+                            <option value="Minutes">Minutos</option>
+                            <option value="Hours">Horas</option>
+                        </select> 
+                    </div>
+
+                    <button>Calcular</button>
+                </form>
+            </div>
+            
+            <p id="result">
+                space for some text
+            </p>
+        </section>
+    </main>
+
+
+
+    <script src="assets/js/index.js"></script>
+</body>
+</html>
