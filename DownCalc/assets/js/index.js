@@ -1,15 +1,21 @@
 const btnCalculate = document.querySelector('button')
 
-btnCalculate.addEventListener('click', function() {
-    const stringFileSize = document.querySelector('#fileSize').value
-    const stringConnectionSpeed = document.querySelector('#connectionSpeed').value
-    const stringDownTime = document.querySelector('#downTime').value
+btnCalculate.addEventListener('click', (e) => {
+    e.preventDefault()
+    const stringFileSize = document.querySelector('#fileSize').value.replace(',','.')
+    const stringConnectionSpeed = document.querySelector('#connectionSpeed').value.replace(',','.')
+    const stringDownTime = document.querySelector('#downTime').value.replace(',','.')
+    
+    try {
+        validateStrings(stringFileSize, stringConnectionSpeed, stringDownTime)
+        const arrayOfNum = transformStrings(stringFileSize, stringConnectionSpeed, stringDownTime)
+    } catch (e) {
+        window.alert(e)
+    }
 
-    validateStrings(stringFileSize, stringConnectionSpeed,stringDownTime)
 })
 
 function validateStrings(stringFileSize, stringConnectionSpeed, stringDownTime) {
-    // if (stringFileSize.length && stringConnectionSpeed.length && stringDownTime.length !== 0) return window.alert('Por favor, digite valores em apenas 2 campos!')
     let count = 0
     let i = [stringFileSize, stringConnectionSpeed, stringDownTime]
     for(let stringField of i) {
@@ -17,17 +23,19 @@ function validateStrings(stringFileSize, stringConnectionSpeed, stringDownTime) 
             count++
         }
     }
-    if (count === 3 || count === 2 || count === 0) return window.alert('Por favor, digite valores em 2 campos!')
-    if (stringFileSize.includes(',') || stringConnectionSpeed.includes(',') || stringDownTime.includes(',')) {
-        
+    if (count === 3 || count === 2 || count === 0) { 
+        throw('Por favor, digite valores em 2 campos!')
     }
+}
 
-    try {
-        
-    } catch (e) {
-        
+function transformStrings(stringFileSize, stringConnectionSpeed, stringDownTime) {
+    const numFileSize = Number(stringFileSize)
+    const numConnectionSpeed = Number(stringConnectionSpeed)
+    const numDownTime = Number(stringDownTime)
+
+    if (Number.isNaN(numFileSize) || Number.isNaN(numConnectionSpeed) || Number.isNaN(numDownTime)) {
+        throw('Algum valor inválido! Por favor, digite novamente!')
+    } else {
+        return [numFileSize, numConnectionSpeed, numDownTime]
     }
-    // transformar virgulas em pontos
-    // usar try catch para outros erros (mais de um ponto por exemplo)
-    
 }
