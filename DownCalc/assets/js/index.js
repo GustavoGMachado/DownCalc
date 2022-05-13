@@ -5,7 +5,7 @@
     selectLanguageEN.addEventListener('click', () => {
         document.querySelector('#lfileSize').innerHTML = 'File size'
         document.querySelector('#lconnectionSpeed').innerHTML = 'Connection Speed'
-        document.querySelector('#ldownTime').innerHTML = 'Download time'
+        document.querySelector('#ldownTime').innerHTML = 'Download time (approximate)'
         document.querySelector('#calcForm button').innerHTML = 'Calculate'
         document.querySelector('#minutes').innerHTML = 'Minutes'
         document.querySelector('#hours').innerHTML = 'Hours'
@@ -15,7 +15,7 @@
     selectLanguageBR.addEventListener('click', () => {
         document.querySelector('#lfileSize').innerHTML = 'Tamanho do arquivo'
         document.querySelector('#lconnectionSpeed').innerHTML = 'Velocidade de conexão'
-        document.querySelector('#ldownTime').innerHTML = 'Tempo para Download'
+        document.querySelector('#ldownTime').innerHTML = 'Tempo para Download (aproximado)'
         document.querySelector('#calcForm button').innerHTML = 'Calcular'
         document.querySelector('#minutes').innerHTML = 'Minutos'
         document.querySelector('#hours').innerHTML = 'Horas'
