@@ -1,30 +1,26 @@
 const btnCalculate = document.querySelector('button')
+const stringDownTime = document.querySelector('#downTime')
+stringDownTime.disabled = true
 
 btnCalculate.addEventListener('click', (e) => {
     e.preventDefault()
     const stringFileSize = document.querySelector('#fileSize').value.replace(',','.')
     const stringConnectionSpeed = document.querySelector('#connectionSpeed').value.replace(',','.')
-    const stringDownTime = document.querySelector('#downTime').value.replace(',','.')
-    
+
     const selectFileSize = document.querySelector('#selectFZ').value
     const selectConnectionSpeed = document.querySelector('#selectCS').value
     const selectDownTime = document.querySelector('#selectDT').value
 
     try {
-        validateStrings(stringFileSize, stringConnectionSpeed, stringDownTime)
-        const arrayOfNum = transformStrings(stringFileSize, stringConnectionSpeed, stringDownTime)
+        validateStrings(stringFileSize, stringConnectionSpeed)
+        const arrayOfNum = transformStrings(stringFileSize, stringConnectionSpeed)
         const arrayOfSelect = [selectFileSize, selectConnectionSpeed, selectDownTime]
 
         const sizeInMB = transformFZinMB(arrayOfNum[0], arrayOfSelect[0])
         const speedInMbps = transformCSinMbps(arrayOfNum[1], arrayOfSelect[1])
-        const timeInSeconds = transformDTinSeconds(arrayOfNum[2], arrayOfSelect[2])
 
-
-
-
-        const calc = doCalculation(sizeInMB, speedInMbps, timeInSeconds)
-        console.log(calc)
-
+        const calc = doCalculation(sizeInMB, speedInMbps, selectDownTime)
+        stringDownTime.value = calc
         
     } catch (e) {
         window.alert(e)
@@ -32,29 +28,22 @@ btnCalculate.addEventListener('click', (e) => {
 
 })
 
-function validateStrings(stringFileSize, stringConnectionSpeed, stringDownTime) {
-    let count = 0
-    let i = [stringFileSize, stringConnectionSpeed, stringDownTime]
-    for(let stringField of i) {
-        if (stringField.length === 0) {
-            count++
-        }
-    }
-    if (count === 3 || count === 2 || count === 0) { 
+function validateStrings(stringFileSize, stringConnectionSpeed) {
+    if (stringFileSize.length === 0 || stringConnectionSpeed.length === 0) { 
         throw('Por favor, digite valores em 2 campos!')
     }
 }
 
-function transformStrings(stringFileSize, stringConnectionSpeed, stringDownTime) {
+function transformStrings(stringFileSize, stringConnectionSpeed) {
     const numFileSize = Number(stringFileSize)
     const numConnectionSpeed = Number(stringConnectionSpeed)
-    const numDownTime = Number(stringDownTime)
 
-    if (Number.isNaN(numFileSize) || Number.isNaN(numConnectionSpeed) || Number.isNaN(numDownTime)) {
+    if (Number.isNaN(numFileSize) || Number.isNaN(numConnectionSpeed) || numFileSize === 0 || numConnectionSpeed === 0) {
         throw('Algum valor inválido! Por favor, digite novamente!')
     } else {
-        return [numFileSize, numConnectionSpeed, numDownTime]
+        return [numFileSize, numConnectionSpeed]
     }
+
 }
 
 function transformFZinMB(arrayOfNum0, selectFileSize) {
@@ -85,33 +74,43 @@ function transformCSinMbps(arrayOfNum1, selectConnectionSpeed) {
     }
 }
 
-function transformDTinSeconds(arrayOfNum2, selectDownTime) {
-    if (selectDownTime === 'Seconds') {
-        return arrayOfNum2
-    }
-    if (selectDownTime === 'Minutes') {
-        const timeInSeconds = arrayOfNum2 * 60
-        return timeInSeconds
-    }
-    if (selectDownTime === 'Hours') {
-        const timeInSeconds = arrayOfNum2 * 3600
-        return timeInSeconds
-    }
-}
+function doCalculation(sizeInMB, speedInMbps, selectDownTime) {
 
-function doCalculation(sizeInMB, speedInMbps, timeInSeconds) {
+    const calcSeconds = sizeInMB / (speedInMbps/8)
 
-    if (sizeInMB === 0) {
-        const calc = (speedInMbps/8) * timeInSeconds
-        return calc
+    if (selectDownTime === 'minutes') {
+        const m = Math.trunc((calcSeconds / 60))
+        const s = Math.trunc(calcSeconds % 60)
+
+        if (m === 0 && s ===0) {
+            return `menos de 1 segundo`
+        }
+        
+        return `${m} minuto(s) e ${s} segundo(s)`
+    }
+    
+    if (selectDownTime === 'hours') {      
+        const h = Math.trunc(calcSeconds/3600)
+        const m = Math.trunc((calcSeconds -(h * 3600)) / 60)
+        const s = Math.trunc(calcSeconds % 60)
+
+        if (h === 0 && m === 0 && s === 0) {
+            return `menos de 1 segundo`
+        }
+
+        return `${h} hora(s), ${m} minuto(s) e ${s} segundo(s)`
     }
 
-    if (speedInMbps === 0) {
-        console.log('calcular speed')
-    }
+    if (selectDownTime === 'days') {
+        const d = Math.trunc(calcSeconds/86400)
+        const h = Math.trunc((calcSeconds - (d * 86400)) /3600)
+        const m = Math.trunc((calcSeconds -((d * 86400) + (h * 3600))) / 60) 
+        const s = Math.trunc(calcSeconds % 60)
 
-    if (timeInSeconds === 0) {
-        const calc = sizeInMB / (speedInMbps/8)
-        return calc
+        if (d === 0 && h === 0 && m === 0 && s === 0) {
+            return `menos de 1 segundo`
+        }
+
+        return `${d} dia(s), ${h} hora(s), ${m} minuto(s) e ${s} segundo(s)`
     }
 }

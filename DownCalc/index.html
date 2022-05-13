@@ -34,7 +34,7 @@
                 <form action="" id="calcForm">
                     <div class="inputArea">
                         <label for="fileSize">Tamanho do arquivo</label> <br>
-                        <input type="text" id="fileSize">
+                        <input type="text" id="fileSize"> <br class="lineBreak">
                         <select name="" id="selectFZ">
                             <option value="kB">Kilobyte (KB)</option>
                             <option value="MB">Megabyte (MB)</option>
@@ -43,20 +43,20 @@
                     </div>
                     <div class="inputArea">
                         <label for="connectionSpeed">Velocidade de conexão</label> <br>
-                        <input type="text" id="connectionSpeed">
+                        <input type="text" id="connectionSpeed"> <br class="lineBreak">
                         <select name="" id="selectCS">
                             <option value="KB/s">KB/s</option>
-                            <option value="Mb/s">Mb/s</option>
+                            <option value="Mb/s" selected>Mb/s</option>
                             <option value="MB/s">MB/s</option>
                         </select> 
                     </div>
                     <div class="inputArea">
-                        <label for="downTime">Tempo para Download</label> <br>
-                        <input type="text" id="downTime">
+                        <label>Tempo para Download</label> <br>
+                        <input type="text" id="downTime"> <br class="lineBreak">
                         <select name="" id="selectDT">
-                            <option value="Seconds">Segundos</option>
-                            <option value="Minutes">Minutos</option>
-                            <option value="Hours">Horas</option>
+                            <option value="minutes">Minutos</option>
+                            <option value="hours" selected>Horas</option>
+                            <option value="days">Dias</option>
                         </select> 
                     </div>
 
@@ -69,8 +69,6 @@
             </p>
         </section>
     </main>
-
-
 
     <script src="assets/js/index.js"></script>
 </body>
