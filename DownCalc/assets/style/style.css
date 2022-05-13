@@ -8,8 +8,8 @@
 :root {
     --color0: rgb(8, 8, 53);
     --color1: rgb(240, 248, 255);
-    
 }
+
 body {
     background-color: var(--color1);
 }
@@ -44,6 +44,7 @@ header {
     text-decoration: none;
     color: #FFF;
 }
+
 #AreaHLText {
     font-family: 'Oleo Script', serif;
     font-size: 35px;
@@ -53,7 +54,26 @@ header {
     justify-content: end;
 }
 
+#selectLanguage {
+    height: 30px;
+    width: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+#selectLanguageBR {
+    width: 35px;
+    text-align: center;
+    cursor: pointer;
+    
+}
+
+#selectLanguageEN {
+    width: 35px;
+    text-align: center;
+    cursor: pointer;
+}
 
 
 
@@ -82,6 +102,7 @@ input {
     width: 380px;
     font-size: 15px;
 }
+
 .inputArea select, #calcForm button{
     font-size: 15px;
     background-color: var(--color0);
@@ -108,6 +129,10 @@ input {
     word-wrap: break-word;
 }
 
+select {
+    outline: 0;
+}
+
 #select1, #select2, #select3, option {
     font-weight: 300;
     border: 0;
@@ -117,6 +142,27 @@ input {
 
 
 @media (max-width: 555px) {
+    .lineBreak {
+        display: block;
+    }
+}
+
+@media (max-width: 390px) {
+    .inputArea{
+        font-weight: 700;
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .inputArea input {
+        width: 300px;
+        font-size: 12px;
+    }
+    
+    .inputArea select, #calcForm button {
+        font-size: 12px;
+    }
+
     .lineBreak {
         display: block;
     }

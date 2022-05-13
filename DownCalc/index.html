@@ -22,7 +22,10 @@
                     </a>
                 </div>
                 <div id="rightHeaderArea">
-                    aaaaaa
+                    <div id="selectLanguage">
+                        <div id="selectLanguageBR">BR</div>|
+                        <div id="selectLanguageEN">EN</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -33,7 +36,7 @@
             <div id="calcArea">
                 <form action="" id="calcForm">
                     <div class="inputArea">
-                        <label for="fileSize">Tamanho do arquivo</label> <br>
+                        <label id="lfileSize" for="fileSize">Tamanho do arquivo</label> <br>
                         <input type="text" id="fileSize"> <br class="lineBreak">
                         <select name="" id="selectFZ">
                             <option value="kB">Kilobyte (KB)</option>
@@ -42,7 +45,7 @@
                         </select> 
                     </div>
                     <div class="inputArea">
-                        <label for="connectionSpeed">Velocidade de conexão</label> <br>
+                        <label id="lconnectionSpeed" for="connectionSpeed">Velocidade de conexão</label> <br>
                         <input type="text" id="connectionSpeed"> <br class="lineBreak">
                         <select name="" id="selectCS">
                             <option value="KB/s">KB/s</option>
@@ -51,12 +54,12 @@
                         </select> 
                     </div>
                     <div class="inputArea">
-                        <label>Tempo para Download</label> <br>
+                        <label id="ldownTime">Tempo para Download</label> <br>
                         <input type="text" id="downTime"> <br class="lineBreak">
                         <select name="" id="selectDT">
-                            <option value="minutes">Minutos</option>
-                            <option value="hours" selected>Horas</option>
-                            <option value="days">Dias</option>
+                            <option id="minutes" value="minutes">Minutos</option>
+                            <option id="hours" value="hours" selected>Horas</option>
+                            <option id="days" value="days">Dias</option>
                         </select> 
                     </div>
 
@@ -65,7 +68,7 @@
             </div>
             
             <p id="result">
-                space for some text
+                
             </p>
         </section>
     </main>
